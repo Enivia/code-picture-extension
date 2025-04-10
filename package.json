@@ -1,7 +1,7 @@
 {
   "name": "code-picture",
   "displayName": "Code Picture",
-  "description": "",
+  "description": "Export code as a beautiful picture",
   "version": "0.0.1",
   "repository": "https://github.com/Enivia/code-picture-extension",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "email": "aqingcc@outlook.com"
   },
   "engines": {
-    "vscode": "^1.99.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
@@ -20,28 +20,53 @@
   "contributes": {
     "commands": [
       {
-        "command": "code-picture.helloWorld",
-        "title": "Hello World"
+        "command": "code-picture.exportToImage",
+        "title": "%command.exportToImage%"
+      },
+      {
+        "command": "code-picture.copyToClipboard",
+        "title": "%command.copyToClipboard%"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "code-picture.exportToImage",
+          "group": "code-picture"
+        },
+        {
+          "command": "code-picture.copyToClipboard",
+          "group": "code-picture"
+        }
+      ]
+    }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run compile",
+    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
+    "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test"
   },
+  "dependencies": {
+    "canvas": "^3.1.0",
+    "highlight.js": "^11.11.1",
+    "tmp": "^0.2.3"
+  },
   "devDependencies": {
-    "@types/vscode": "^1.99.0",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
-    "eslint": "^9.23.0",
-    "typescript": "^5.8.2",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/tmp": "^0.2.6",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
   }
 }
